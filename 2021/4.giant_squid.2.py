@@ -59,12 +59,20 @@ def boardSum(board: list[list[int]]) -> int:
                 unmarked += num
     return unmarked
 
+skip = []
+
 def bingo() -> int:
     for num in nums:
         marker[num] = True
-        for board in boards:
+        for i in range(len(boards)):
+            if i in skip:
+                continue
+            board = boards[i]
             if isWin(board):
-                return boardSum(board) * num
+                if len(boards) - len(skip) == 1:
+                    return boardSum(board) * num
+                else:
+                    skip.append(i)
     return 0
 
 print(bingo())
