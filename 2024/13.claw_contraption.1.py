@@ -1,5 +1,3 @@
-# It works within a reasonable time but is still slow in my opinion
-
 machines = []
 try:
     while True:

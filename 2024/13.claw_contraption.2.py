@@ -1,3 +1,6 @@
+import numpy as np
+from math import modf
+
 machines = []
 try:
     while True:
@@ -21,30 +24,31 @@ try:
 except EOFError:
     pass
 
-ax,ay,bx,by,tx,ty = 0,0,0,0,0,0
-cache = []
-cost = 0
+res = 0
 
-def dfs(x: int, y: int, ac: int, bc: int):
-    if (x,y) == (tx,ty):
-        return ac*3 + bc
-    if x > tx or y > ty:
-        return 0
-    if ac > 100 or bc > 100:
-        return 0
-    if cache[x][y] > -1:
-        return cache[x][y]
-    res = dfs(x+ax,y+ay,ac+1,bc) or dfs(x+bx,y+by,ac,bc+1)
-    cache[x][y] = res
-    return res
-
-prize = 0
 for m in machines:
     ax,ay = m[0]
     bx,by = m[1]
+    A = np.array([[ax, bx],
+                  [ay, by]])
     tx,ty = m[2]
-    cache = [[0 for _ in range(ty+1)] for _ in range(tx+1)]
-    for i in range()
-    prize += dfs(0,0,0,0)
+    tx += 10000000000000
+    ty += 10000000000000
+    
+    A_1 = np.array([[tx, bx],
+                    [ty, by]])
+    A_2 = np.array([[ax, tx],
+                    [ay, ty]])
+    
+    x = np.linalg.det(A_1) / np.linalg.det(A)
+    y = np.linalg.det(A_2) / np.linalg.det(A)
+    xf, _ = modf(x)
+    yf, _ = modf(y)
+    
+    f1 = round(xf * 100)
+    f2 = round(yf * 100)
+    
+    if((f1 == 0 or f1 == 100) and (f2 == 0 or f2 == 100)): # We have solution!
+        res += round(x) * 3 + round(y)
 
-print(prize)
+print(res)
