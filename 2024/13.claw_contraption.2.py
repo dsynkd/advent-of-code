@@ -29,19 +29,19 @@ res = 0
 for m in machines:
     ax,ay = m[0]
     bx,by = m[1]
-    A = np.array([[ax, bx],
-                  [ay, by]])
     tx,ty = m[2]
     tx += 10000000000000
     ty += 10000000000000
     
-    A_1 = np.array([[tx, bx],
+    A = np.array([[ax, bx],
+                  [ay, by]])
+    A1 = np.array([[tx, bx],
                     [ty, by]])
-    A_2 = np.array([[ax, tx],
+    A2 = np.array([[ax, tx],
                     [ay, ty]])
     
-    x = np.linalg.det(A_1) / np.linalg.det(A)
-    y = np.linalg.det(A_2) / np.linalg.det(A)
+    x = np.linalg.det(A1) / np.linalg.det(A)
+    y = np.linalg.det(A2) / np.linalg.det(A)
     xf, _ = modf(x)
     yf, _ = modf(y)
     
