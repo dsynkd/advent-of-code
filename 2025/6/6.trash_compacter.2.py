@@ -3,33 +3,39 @@ for line in open(0):
     # Only take off newline, not trailing whitespace
     lines.append(line[:-1])
 
-# K is list of column lengths
-K = []
-c = 0
-for j in range(1, len(lines[-1])):
-    if lines[-1][j] != ' ':
-        K.append(c)
-        c = 0
-    else:
-        c += 1
-K.append(c+1)
+def loadK():
+    # K is list of column lengths
+    K = []
+    c = 0
+    for j in range(1, len(lines[-1])):
+        if lines[-1][j] != ' ':
+            K.append(c)
+            c = 0
+        else:
+            c += 1
+    K.append(c+1)
+    return K
 
+def loadGrid():
+    grid = []
+    for i in range(len(lines)-1):
+        j = 0
+        row = []
+        K_i = 0
+        while j < len(lines[i]):
+            k = K[K_i]
+            row.append(lines[i][j:j+k])
+            j += k + 1
+            K_i += 1
+        grid.append(row)
+    return grid
+
+K = loadK()
 ops = lines[-1].split()
-
-grid = []
-for i in range(len(lines)-1):
-    j = 0
-    row = []
-    K_i = 0
-    while j < len(lines[i]):
-        k = K[K_i]
-        row.append(lines[i][j:j+k])
-        j += k + 1
-        K_i += 1
-    grid.append(row)
-
+grid = loadGrid()
 n = len(grid)
 m = len(grid[0])
+assert(len(ops) == len(K) == m)
 
 total = 0
 
