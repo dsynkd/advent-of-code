@@ -1,9 +1,6 @@
 grid = []
-try:
-    while s:= input():
-        grid.append(list(s))
-except EOFError:
-    pass
+for line in open(0):
+    grid.append(list(line))
 
 M = len(grid)
 N = len(grid[0])
