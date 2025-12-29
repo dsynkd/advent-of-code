@@ -14,9 +14,14 @@ def neighbor_val(i,j):
     return 0
 
 def count_neighbors(i,j):
-    return (neighbor_val(i+1,j) + neighbor_val(i+1,j+1) + neighbor_val(i+1,j-1)
-            + neighbor_val(i,j+1) + neighbor_val(i,j-1)
-            + neighbor_val(i-1,j) + neighbor_val(i-1,j+1) + neighbor_val(i-1,j-1))
+    return (neighbor_val(i+1,j) +
+            neighbor_val(i+1,j+1) +
+            neighbor_val(i+1,j-1) +
+            neighbor_val(i,j+1) +
+            neighbor_val(i,j-1) +
+            neighbor_val(i-1,j) +
+            neighbor_val(i-1,j+1) +
+            neighbor_val(i-1,j-1))
 
 res = 0
 
